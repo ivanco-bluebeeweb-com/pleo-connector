@@ -97,7 +97,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_expense(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_expense(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/expenses", headers=self.headers, json=payload)
@@ -150,7 +151,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_card(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_card(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/cards", headers=self.headers, json=payload)
@@ -203,7 +205,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_report(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_report(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/reports", headers=self.headers, json=payload)
@@ -253,7 +256,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_policy(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_policy(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/policies", headers=self.headers, json=payload)
@@ -303,7 +307,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_merchant(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_merchant(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/merchants", headers=self.headers, json=payload)
@@ -353,7 +358,8 @@ class PleoClient:
             except Exception as e:
                 return {"status": "error", "code": "NETWORK_ERROR", "message": self._sanitize_msg(str(e))}
 
-    async def create_reimbursement(self, payload: dict[str, Any]) -> dict[str, Any]:
+    async def create_reimbursement(self, payload: dict[str, Any] = None, name: str = "", details: dict[str, Any] = None, **kwargs) -> dict[str, Any]:
+        if payload is None: payload = {"name": name, **(details or {})}
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
                 resp = await client.post(f"{self.base_url}/reimbursements", headers=self.headers, json=payload)
